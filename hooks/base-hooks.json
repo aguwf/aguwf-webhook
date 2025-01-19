@@ -1,0 +1,23 @@
+{
+  "port": 3456,
+  "path": "/webhook",
+  "secret": "/secrets/webhook-secret",
+  "hooks": [
+    {
+      "id": "redeploy",
+      "execute-command": "/config/scripts/redeploy.sh",
+      "command-working-directory": "/config/scripts",
+      "response-message": "🚀 Running re-deployment!",
+      "trigger-rule": {
+        "match": {
+          "type": "value",
+          "value": "redeploy",
+          "parameter": {
+            "source": "payload",
+            "name": "action"
+          }
+        }
+      }
+    }
+  ]
+}
